@@ -59,8 +59,8 @@ class LoginPage:
     )
 
     SUCCESS_MESSAGE = (
-        By.ID,
-        "«r2»"
+        By.CSS_SELECTOR,
+        "input[data-testid='typeahead-input']"
     )
 
     # -----------------------------
@@ -174,14 +174,12 @@ class LoginPage:
     def get_success_message(self):
 
         elements = self.wait.until(
-            EC.presence_of_all_elements_located(
+            EC.visibility_of_element_located(
                 self.SUCCESS_MESSAGE
             )
         )
-        if elements.is_displayed():
-            return "Logged in"
-            
-        raise Exception ("Visible error message not found")
+        return "Logged in"
+        
 
     # -----------------------------
 
